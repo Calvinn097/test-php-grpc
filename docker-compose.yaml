@@ -38,3 +38,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3319:3306"
+
+  grpc_user:
+    image: grpc_user
+    container_name: grpc_user
+    ports:
+      - "50051:50051"
