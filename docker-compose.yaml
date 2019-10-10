@@ -1,0 +1,40 @@
+version: '2.1'
+
+services:
+  user_server_php:
+    image: user_server_php
+    container_name: user_server_php
+    restart: always
+    ports:
+      - "1202:80"
+    volumes:
+      - ./user_server_php:/var/www/html
+
+  user_server_db:
+    image: mysql:5
+    container_name: user_mysql
+    volumes:
+      - ./tmp/db1:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3318:3306"
+
+  social_server_php:
+    image: social_server_php
+    container_name: social_server_php
+    restart: always
+    ports:
+      - "1203:80"
+    volumes:
+      - ./social_server_php:/var/www/html
+
+  social_server_db:
+    image: mysql:5
+    container_name: social_mysql
+    volumes:
+      - ./tmp/db2:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3319:3306"

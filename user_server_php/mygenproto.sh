@@ -1,0 +1,1 @@
+protoc --proto_path=app/Http/Proto --php_out=app/Http/Proto --grpc_out=app/Http/Proto --plugin=protoc-gen-grpc=/var/www/grpc/bins/opt/grpc_php_plugin app/Http/Proto/account.proto

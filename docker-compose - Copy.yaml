@@ -1,0 +1,51 @@
+version: '2.1'
+
+services:
+  user_server_php:
+    image: registry.gitlab.com/pmberjaya/php-server
+    container_name: user_server_php
+    restart: always
+    ports:
+      - "1202:80"
+    volumes:
+      - ./user_server_php:/var/www/html
+
+  user_server_db:
+    image: mysql:5
+    container_name: user_mysql
+    volumes:
+      - ./tmp/db1:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3318:3306"
+  go1:
+    image: registry.gitlab.com/pmberjaya/sgbytedev/mainphp/master:local
+    container_name: main
+    restart: always
+    ports:
+      - "1200:80"
+  social_server_php:
+    image: registry.gitlab.com/pmberjaya/php-server
+    container_name: social_server_php
+    restart: always
+    ports:
+      - "1203:80"
+    volumes:
+      - ./social_server_php:/var/www/html
+
+  social_server_db:
+    image: mysql:5
+    container_name: social_mysql
+    volumes:
+      - ./tmp/db2:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3319:3306"
+  go2:
+    image: registry.gitlab.com/pmberjaya/sgbytedev/mainphp/master:local
+    container_name: main
+    restart: always
+    ports:
+      - "1200:80"
